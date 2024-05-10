@@ -80,7 +80,7 @@ scheduler.add_job(
 
 app = FastAPI()
 
-@app.on_event("start")
+@app.on_event("startup")
 def job_on():
     job = scheduler.get_jobs()[0]
     print(job)
