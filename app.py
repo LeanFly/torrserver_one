@@ -74,6 +74,7 @@ scheduler = BackgroundScheduler()
 
 scheduler.add_job(
     main_handle,
+    "interval",
     hour=6
 )
 
