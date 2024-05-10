@@ -74,7 +74,7 @@ scheduler = BackgroundScheduler()
 
 scheduler.add_job(
     main_handle,
-    hours=6
+    hour=6
 )
 
 app = FastAPI()
