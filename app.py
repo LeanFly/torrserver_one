@@ -36,11 +36,12 @@ def get_magnet(url) -> str:
     soup = BeautifulSoup(req.text, "html.parser")
     try:
         magnet = soup.find(name="a", attrs={"class": "button is-primary is-fullwidth"}).get("href")
-        return magnet
+        image = soup.find(name="img", attrs={"class": "image"}).get("src")
+        return magnet, image
     except:
         return
 
-def add_download(magnet: str):
+def add_download(magnet: str, image: str):
     """ 传入 magnet 链接，访问 torrserver api，添加内容 """
     payloads = {
         "action": "add",
@@ -48,7 +49,7 @@ def add_download(magnet: str):
         "data": "",
         "hash": "",
         "link": magnet,
-        "poster": "",
+        "poster": image,
         "save_to_db": True,
         "title": ""
     }
@@ -62,9 +63,9 @@ def main_handle():
     if pages:
         for i in pages:
             try:
-                magnet = get_magnet(i)
-                
-                add_download(magnet)
+                magnet, image = get_magnet(i)
+
+                add_download(magnet, image)
             except:
                 continue
 
