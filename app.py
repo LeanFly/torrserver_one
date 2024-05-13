@@ -13,7 +13,7 @@ host =  os.getenv("one_host")
 torr_api = f"{os.getenv('torr_api')}/torrents"
 # 如果获取不到就走默认值
 host = host if host else "https://one.52378.fun"
-torr_api = torr_api if torr_api else "http://172.17.0.1/torrents"
+torr_api = torr_api if os.getenv('torr_api') else "http://172.17.0.1/torrents"
 
 
 def get_page_list() -> list:
